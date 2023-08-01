@@ -1,0 +1,106 @@
+---
+interface Props {
+	name: string;
+	id: string;
+}
+
+const { name, id } = Astro.props;
+---
+<div class="w-56 h-64 relative overflow-hidden rounded-lg shadow-lg group">
+	<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-70 transition-opacity pointer-events-none"></div>
+	<a href={`/${id}`}>
+		<astro-render class="w-56 h-64 bg-cover bg-center block" id={id} data-id={id}></astro-render>
+	</a>
+	<div class="absolute w-56 bottom-0 left-0 p-4 pt-0 text-white transition-transform transform translate-y-12 group-hover:translate-y-0 flex justify-between">
+		<h3 class="text-lg font-semibold cursor-default">{name}</h3>
+		<a class="w-5 h-5 place-self-center hover:text-stone-400 hover:cursor-pointer" id={`${id}-btn`}>
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+			</svg>	
+		</a>		  
+	</div>
+	</div>
+</div>
+
+<script>
+import { SkinViewer } from "skinview3d"
+	class SkinRenderer extends HTMLElement {
+		constructor() {
+			super();
+
+			const elem = document.getElementById(this.dataset.id || '')
+			if(elem == null) return
+
+			const skinViewer = new SkinViewer({
+				width: 224,
+				height: 256,
+				renderPaused: true
+			});
+
+			skinViewer.camera.rotation.x = -0.1;
+			skinViewer.camera.rotation.y = 0.5;
+			skinViewer.camera.rotation.z = 0.05;
+			skinViewer.camera.position.x = 15;
+			skinViewer.camera.position.y = 3;
+			skinViewer.camera.position.z = 25;
+			
+			skinViewer.fov = 70;
+
+			skinViewer.background = 0x262626;
+
+			this.loadSkin(skinViewer).then(()=>{
+				skinViewer.render();
+				const image = skinViewer.canvas.toDataURL();
+				elem.setAttribute("style", `background-image: url(${image})`);
+			})
+		}
+
+		async loadSkin(skinViewer: SkinViewer){
+			let id = this.dataset.id;
+			let image = await overlayImages("https://i.imgur.com/3LQf7n2.png", `./overlays/${id}.png`)
+			let link = document.getElementById(`${id}-btn`) as HTMLAnchorElement
+			link.href = image
+			link.download = id + "-overlay-skin.png"
+			await skinViewer.loadSkin(image)
+		}
+	}	
+
+	function overlayImages(backgroundImageUrl:string, overlayImageUrl:string):Promise<string> {
+		return new Promise((resolve, reject) => {
+			const canvas = document.createElement('canvas');
+			canvas.style.display = 'none';
+			document.body.appendChild(canvas);
+
+			const backgroundImg = new Image();
+			backgroundImg.crossOrigin = 'Anonymous';
+			backgroundImg.src = backgroundImageUrl;
+
+			const overlayImg = new Image();
+			overlayImg.crossOrigin = 'Anonymous';
+			overlayImg.src = overlayImageUrl;
+
+			Promise.all([
+				new Promise((res) => (backgroundImg.onload = res)),
+				new Promise((res) => (overlayImg.onload = res)),
+			]).then(() => {
+				canvas.width = backgroundImg.width;
+				canvas.height = backgroundImg.height;
+
+				const ctx = canvas.getContext('2d');
+				if(ctx == null) return;
+				ctx.drawImage(backgroundImg, 0, 0);
+
+				ctx.drawImage(overlayImg, 0, 0, overlayImg.width, overlayImg.height);
+
+				const base64 = canvas.toDataURL('image/png');
+
+				document.body.removeChild(canvas);
+
+				resolve(base64);
+			});
+		});
+	}
+
+	customElements.define('astro-render', SkinRenderer);
+</script>
+  

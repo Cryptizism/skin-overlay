@@ -1,0 +1,20 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const overlays = await getCollection('overlay');
+	return overlays.map((overlay) => ({
+		params: { slug: overlay.id },
+		props: overlay,
+	}));
+}
+type Props = CollectionEntry<'overlay'>;
+
+const overlay = Astro.props;
+---
+<Layout title={overlay.data.name}>
+	<main>
+		
+	</main>
+</Layout>

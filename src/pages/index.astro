@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import FormattedDate from "../components/FormattedDate.astro"
+import { getCollection } from 'astro:content';
+import NavBar from "../components/Navbar.astro"
+
+const overlays = (await getCollection('overlay')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Skin Overlays">
+	<main>
+		<NavBar/>
+		<ul class="flex flex-wrap justify-center gap-8 w-80vw mx-auto my-4">
+			{
+				overlays.map((overlay) => (
+					<Card name={overlay.data.name} id={overlay.id}></Card>
+				))
+			}
+		</ul>
+	</main>
+</Layout>
