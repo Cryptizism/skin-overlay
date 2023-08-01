@@ -6,9 +6,9 @@ interface Props {
 
 const { name, id } = Astro.props;
 ---
-<div class="w-56 h-64 relative overflow-hidden rounded-lg shadow-lg group">
+<div class="w-56 h-64 relative overflow-hidden rounded-lg shadow-lg group bg-gradient-to-tr from-stone-900 from-0% to-neutral-800">
 	<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 group-hover:opacity-70 transition-opacity pointer-events-none"></div>
-	<a href={`/${id}`}>
+	<a href={`./${id}`}>
 		<astro-render class="w-56 h-64 bg-cover bg-center block" id={id} data-id={id}></astro-render>
 	</a>
 	<div class="absolute w-56 bottom-0 left-0 p-4 pt-0 text-white transition-transform transform translate-y-12 group-hover:translate-y-0 flex justify-between">
@@ -46,8 +46,6 @@ import { SkinViewer } from "skinview3d"
 			
 			skinViewer.fov = 70;
 
-			skinViewer.background = 0x262626;
-
 			this.loadSkin(skinViewer).then(()=>{
 				skinViewer.render();
 				const image = skinViewer.canvas.toDataURL();
@@ -58,8 +56,8 @@ import { SkinViewer } from "skinview3d"
 		async loadSkin(skinViewer: SkinViewer){
 			let id = this.dataset.id;
 			const params = new Proxy(new URLSearchParams(window.location.search), {
-				get: (searchParams, prop) => searchParams.get(prop),
-			});
+				get: (searchParams, prop) => searchParams.get(prop as string),
+			}) as any; //for some reason typescript says username is not a property even though it is...
 			let username = params.username ?? 'cryptizism'
 			let image = await overlayImages("https://mc-heads.net/skin/" + username, `./overlays/${id}.png`)
 			let link = document.getElementById(`${id}-btn`) as HTMLAnchorElement
