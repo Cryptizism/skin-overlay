@@ -1,7 +1,16 @@
 <nav class="bg-zinc-800 flex h-12 px-20 max-lg:px-4 justify-between">
     <div class="flex gap-4">
       <img src="./logo.svg">
-      <input type="text" id="username" class="m-2 bg-zinc-700 rounded-md px-2 text-white" placeholder="Your username here">
+      <input type="text" id="username" class="m-2 bg-zinc-700 rounded-md px-2 text-white" placeholder="Your username here" onfocusout="window.location.href = `?username=${this.value}`">
+      <script is:inline>
+        const usernameInput = document.getElementById('username');
+
+        usernameInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+              window.location.href = `?username=${usernameInput.value}`
+            }
+        });
+      </script>
     </div>
     <ul class="flex place-items-center gap-4 text-white justify-center">
       <li>
@@ -15,4 +24,3 @@
       </li>
     </ul>
 </nav>
-  

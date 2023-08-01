@@ -57,7 +57,11 @@ import { SkinViewer } from "skinview3d"
 
 		async loadSkin(skinViewer: SkinViewer){
 			let id = this.dataset.id;
-			let image = await overlayImages("https://i.imgur.com/3LQf7n2.png", `./overlays/${id}.png`)
+			const params = new Proxy(new URLSearchParams(window.location.search), {
+				get: (searchParams, prop) => searchParams.get(prop),
+			});
+			let username = params.username ?? 'cryptizism'
+			let image = await overlayImages("https://mc-heads.net/skin/" + username, `./overlays/${id}.png`)
 			let link = document.getElementById(`${id}-btn`) as HTMLAnchorElement
 			link.href = image
 			link.download = id + "-overlay-skin.png"
