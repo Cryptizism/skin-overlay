@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NavBar from "../components/Navbar.astro"
+---
+
+<Layout title="About">
+    <NavBar search={false}/>
+	<main class="flex flex-col items-center text-center">
+        <h2 class="text-xl text-green-400 pt-8">FAQ</h2>
+        <h1 class="text-4xl text-white p-2 font-medium">Got any questions?<br>These should answer them all!</h2>
+        <p class="mb-8 text-gray-500 font-normal">For additional information you can contact me on Discord: Cryptizism</p>
+        <div class="w-full max-w-3xl flex flex-col gap-4">
+            <div class="space-y-2">
+              <div class="bg-neutral-800 p-4 rounded-lg acordion text-white">
+                <button class="w-full flex justify-between items-center focus:outline-none">
+                  <span class="text-lg font-medium">How do I add my own skins?</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div class="accordion-content mt-2 hidden">
+                    <hr class="divide-neutral-700">
+                    <h3 class="text-xl p-4 font-bold">Easy Option</h3>
+                    <p class="text-left">You can contact me on your discord with an image of your skin overlay and I will add your socials and name to the website!</p>
+                    <h3 class="text-xl p-4 font-bold">Manual Option</h3>
+                    <ol class="list-decimal p-4 text-left flex flex-col gap-4">
+                        <li>
+                            Clone the repository
+                            <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
+                                <span class="flex gap-4">
+                                    <span class="shrink-0 text-gray-500">
+                                        $
+                                    </span>
+                                    <span class="flex-1">
+                                        git clone https://github.com/Cryptizism/skin-overlay.git
+                                    </span>
+                                </span>
+                            </code>
+                        </li>
+                        <li>
+                            Clone the repository
+                            <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
+                                <span class="flex gap-4">
+                                    <span class="shrink-0 text-gray-500">
+                                        $
+                                    </span>
+                                    <span class="flex-1">
+                                        git clone https://github.com/Cryptizism/skin-overlay.git
+                                    </span>
+                                </span>
+                            </code>
+                        </li>
+                        <li class="mx-auto">
+                            Populate your file like below
+                            <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
+                                <ol class="list-decimal px-4 text-left flex flex-col">
+                                    <li>
+                                        &lcub;
+                                    </li>
+                                    <li class="pl-4">
+                                        "name":"Banana Hat",
+                                    </li>
+                                    <li class="pl-4">
+                                        "description": "This banana hat was inspired by bananas", (optional)
+                                    </li>
+                                    <li class="pl-4">
+                                        "pubDate": "Aug 01 2023", (optional)
+                                    </li>
+                                    <li class="pl-4">
+                                        "author": "Cryptizism" (optional)
+                                    </li>
+                                    <li>
+                                        &rcub;
+                                    </li>
+                                </ol>
+                            </code>
+                        </li>
+                        <li>
+                            Place the image of your skin overlay in public/overlays with the same name as your .json
+                        </li>
+                        <li>
+                            Create a pull request
+                        </li>
+                    </ol>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-2">
+                <div class="bg-neutral-800 p-4 rounded-lg acordion text-white">
+                  <button class="w-full flex justify-between items-center focus:outline-none">
+                    <span class="text-lg font-medium">How do I build this?</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="accordion-content mt-2 hidden">
+                      <hr class="divide-neutral-700">
+                      <h3 class="text-xl p-4 font-bold">Basic Usage</h3>
+                      <ol class="list-decimal p-4 text-left flex flex-col gap-4">
+                          <li>
+                              Clone the repository
+                              <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
+                                  <span class="flex gap-4">
+                                      <span class="shrink-0 text-gray-500">
+                                          $
+                                      </span>
+                                      <span class="flex-1">
+                                          git clone https://github.com/Cryptizism/skin-overlay.git
+                                      </span>
+                                  </span>
+                              </code>
+                          </li>
+                          <li>
+                            <p>Install dependencies</p>
+                            <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 mx-">
+                                <span class="flex gap-4">
+                                    <span class="shrink-0 text-gray-500">
+                                        $
+                                    </span>
+                                    <span class="flex-1">
+                                        npm i
+                                    </span>
+                                </span>
+                            </code>
+                          </li>
+                          <li>
+                            <p>Run in development enviroment</p>
+                            <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6 mx-">
+                                <span class="flex gap-4">
+                                    <span class="shrink-0 text-gray-500">
+                                        $
+                                    </span>
+                                    <span class="flex-1">
+                                        npm run dev
+                                    </span>
+                                </span>
+                            </code>
+                          </li>
+                      </ol>
+                      <h3 class="text-xl p-4 font-bold">Deploying</h3>
+                      <ol class="list-decimal p-4 text-left flex flex-col gap-4">
+                        <li>
+                            <p>Edit your astro.config.mjs to reflect your github repo like below</p>
+                            <code class="text-sm sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
+                                <ol class="list-decimal px-4 text-left flex flex-col">
+                                    <li>
+                                        <span class="text-pink-700">import</span> <span class="text-yellow-500">&lcub;</span> <span class="text-blue-400">defineConfig</span> <span class="text-yellow-500">&rcub;</span> <span class="text-pink-700">from</span> <span class="text-orange-700">'astro/config'</span>;
+                                    </li>
+                                    <li>
+                                        <span class="text-pink-700">import</span> <span class="text-blue-400">tailwind</span> <span class="text-pink-700">from</span> <span class="text-orange-700">"@astrojs/tailwind"</span>;
+                                    </li>
+                                    <li>
+                                        
+                                    </li>
+                                    <li>
+                                        <span class="text-pink-700">export default <span class="text-yellow-500">defineConfig(</span>&lcub;</span>
+                                    </li>
+                                    <li class="pl-4">
+                                        <span class="text-blue-400">integrations:</span> <span class="text-blue-700">[<span class="text-yellow-500">tailwind</span><span class="text-orange-700">()</span>]</span>,
+                                    </li>
+                                    <li class="pl-4">
+                                        <span class="text-blue-400">site:</span> <span class="text-orange-700 underline">'https://YOUR_ACCOUNT.github.io'</span>,
+                                    </li>
+                                    <li class="pl-4">
+                                        <span class="text-blue-400">site:</span> <span class="text-orange-700 underline">'/your_repo'</span>,
+                                    </li>
+                                    <li>
+                                        <span class="text-pink-700">&rcub;</span><span class="text-yellow-500">)</span>;
+                                    </li>
+                                </ol>
+                            </code>
+                        </li>
+                        <li>
+                            Under the settings page of your repo go to pages and turn the source to "GitHub Actions"
+                        </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            <div class="space-y-2">
+                <div class="bg-neutral-800 p-4 rounded-lg acordion text-white">
+                  <button class="w-full flex justify-between items-center focus:outline-none">
+                    <span class="text-lg font-medium">My art is on here without my consent!</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="accordion-content mt-2 hidden text-left">
+                      <hr class="divide-neutral-700 mb-2">
+                      Since submissions are open there is a chance that your art may be here without your expressed permissions, if this happens please feel free to contact me on the github or on Discord and I will resolve the issues as fast as possible!
+                  </div>
+                </div>
+              </div>
+          </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.acordion');
+
+            accordionItems.forEach((item) => {
+                const button = item.querySelector('button');
+                const content = item.querySelector('.accordion-content');
+
+                button.addEventListener('click', () => {
+                // Toggle the 'hidden' class to show/hide the content
+                content.classList.toggle('hidden');
+
+                // Toggle the icon
+                const icon = button.querySelector('svg');
+                icon.classList.toggle('rotate-180');
+                });
+            });
+            });
+        </script>
+	</main>
+</Layout>

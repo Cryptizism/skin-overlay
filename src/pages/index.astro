@@ -11,8 +11,8 @@ const overlays = (await getCollection('overlay')).sort(
 ---
 
 <Layout title="Skin Overlays">
+	<NavBar search={true}/>
 	<main>
-		<NavBar/>
 		<ul class="flex flex-wrap justify-center gap-8 w-80vw mx-auto my-4">
 			{
 				overlays.map((overlay) => (
