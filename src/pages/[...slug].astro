@@ -86,7 +86,7 @@ const overlay = Astro.props;
 					get: (searchParams, prop) => searchParams.get(prop as string),
 				}) as any; //for some reason typescript says username is not a property even though it is...
 				let username = params.username ?? 'cryptizism'
-				let image = await overlayImages("https://mc-heads.net/skin/" + username, `./overlays/${id}.png`)
+				let image = await overlayImages("https://mc-heads.net/skin/" + username, `../overlays/${id}.png`)
 				let link = document.getElementById('download') as HTMLAnchorElement
 				link.href = image
 				link.download = id + "-overlay-skin.png"
