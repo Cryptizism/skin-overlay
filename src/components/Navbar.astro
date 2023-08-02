@@ -1,13 +1,16 @@
 ---
 interface Props {
 	search: boolean;
+  path: string;
 }
 
-const { search } = Astro.props;
+const { search, path = "." } = Astro.props;
 ---
 <nav class="bg-zinc-800 flex h-12 px-20 max-lg:px-4 justify-between">
-    <div class="flex w-full gap-4">
-      <img src="./logo.svg" class="max-sm:hidden">
+    <div class="flex w-full gap-4 items-center">
+      <a href={path}>
+        <img src="./logo.svg" class="max-sm:h-8 h-full">
+      </a>
       {search && <input type="text" id="username" class="m-2 bg-zinc-700 rounded-md px-2 text-white max-sm:flex-1" placeholder="Your username here" onfocusout="updateURL()">
       <script is:inline>
         const usernameInput = document.getElementById('username');
@@ -26,10 +29,10 @@ const { search } = Astro.props;
     </div>
     <ul class="flex place-items-center gap-4 text-white justify-center max-sm:hidden">
       <li>
-        <a href="./" class="hover:text-zinc-300">Home</a>
+        <a href={`${path}/`} class="hover:text-zinc-300">Home</a>
       </li>
       <li>
-        <a href="./about" class="hover:text-zinc-300">About</a>
+        <a href={`${path}/about`} class="hover:text-zinc-300">About</a>
       </li>
       <li>
         <a href="https://github.com/Cryptizism/skin-overlay/" class="hover:text-zinc-300">
@@ -39,4 +42,23 @@ const { search } = Astro.props;
         </a>
       </li>
     </ul>
+    <button type="button" class="self-center inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600" onclick="document.getElementById('mob-nav').classList.toggle('hidden');">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
 </nav>
+<ul class="flex place-items-center gap-4 bg-zinc-800 text-white justify-between sm:hidden text-lg hidden" id="mob-nav">
+  <li class="p-2 m-2 bg-zinc-700 rounded-md">
+    <a href="./" class="hover:text-zinc-300">Home</a>
+  </li>
+  <li class="p-2 m-2 bg-zinc-700 rounded-md">
+    <a href="./about" class="hover:text-zinc-300">About</a>
+  </li>
+  <li class="p-2 m-2 bg-zinc-700 rounded-md">
+    <a href="https://github.com/Cryptizism/skin-overlay/" class="hover:text-zinc-300">
+      Contribute
+    </a>
+  </li>
+</ul>
