@@ -8,8 +8,8 @@ const { search, path = "." } = Astro.props;
 ---
 <nav class="bg-zinc-800 flex h-12 px-20 max-lg:px-4 justify-between">
     <div class="flex w-full gap-4 items-center">
-      <a href={path}>
-        <img src="./logo.svg" class="max-sm:h-8 h-full">
+      <a href={path} class="max-sm:h-8 h-full">
+        <img src={`${path}/logo.svg`} class="h-full">
       </a>
       {search && <input type="text" id="username" class="m-2 bg-zinc-700 rounded-md px-2 text-white max-sm:flex-1" placeholder="Your username here" onfocusout="updateURL()">
       <script is:inline>

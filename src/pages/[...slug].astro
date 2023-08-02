@@ -15,7 +15,7 @@ type Props = CollectionEntry<'overlay'>;
 
 const overlay = Astro.props;
 ---
-<Layout title={overlay.data.name}>
+<Layout title={overlay.data.name} path="..">
 	<Navbar search={true} path=".."/>
 	<main class="flex max-lg:flex-col w-[80vw] mx-auto">
 		<div class="w-1/3 max-lg:w-full flex justify-end max-lg:justify-center max-sm:hidden">
