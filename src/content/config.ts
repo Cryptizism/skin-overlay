@@ -9,7 +9,8 @@ const overlayCollection = defineCollection({
 			.string()
 			.or(z.date())
 			.transform((val) => new Date(val)),
-    author: z.string().default("Unknown"),
+    author: z.string().optional(),
+    author_link: z.string().url().optional(),
     focus: z.enum(["head", "full", "back"]).default("full") //for later implementation
   }),
 });

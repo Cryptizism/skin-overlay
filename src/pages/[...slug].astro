@@ -28,7 +28,8 @@ const overlay = Astro.props;
 						<p><span class="font-semibold">Date published: </span><FormattedDate date={overlay.data.pubDate}></p>
 					</li>
 					<li>
-						<p><span class="font-semibold">Author: </span>{overlay.data.author}</p>
+						{!overlay.data.author && <p><span class="font-semibold">Author: </span>Unknown</p>}
+						{overlay.data.author && <p><span class="font-semibold">Author: </span><a class="text-blue-600 dark:text-blue-500 hover:underline" href={overlay.data.author_link} target="_blank">{overlay.data.author}</a></p>}
 					</li>
 					{overlay.data.description && <li>
 						<p><span class="font-semibold">Description: </span>{overlay.data.description}</p>
