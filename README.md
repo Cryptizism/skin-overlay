@@ -42,7 +42,3 @@ The website will now be running locally at `http://localhost:3000`.
 ## Deployment
 
 The website is automatically deployed using GitHub Pages. Any changes merged into the `main` branch will be automatically published and visible at https://cryptizism.github.io/skin-overlay/.
-
-## License
-
-This project is licensed under the [GNU General Public License version 3 (GPL-3.0)](LICENSE).
